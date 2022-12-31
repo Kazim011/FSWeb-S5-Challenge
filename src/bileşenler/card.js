@@ -22,6 +22,11 @@ const Card = (makale) => {
   author.appendChild(yazarAdı);
   card.appendChild(author);
 
+  card.addEventListener("click" , (event) => {
+    console.log(event.target.querySelector(".headline").textContent)
+  })
+
+
   return card;
 
   // GÖREV 5
