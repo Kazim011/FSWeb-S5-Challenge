@@ -1,4 +1,19 @@
+import axios from "axios";
+import { response } from "msw";
+
 const Tablar = (konu) => {
+
+  const topics = document.createElement("div");
+  topics.classList.add("topics");
+
+  konu.forEach(element => {
+  const tab = document.createElement("div");
+  tab.classList.add("tab");
+  tab.textContent =element;
+  topics.appendChild(tab);
+  });
+
+  return topics;
   // GÖREV 3
   // ---------------------
   // Tek argümanı bir dizi ("konu") olan bu fonksiyonu uygulayın.
@@ -16,6 +31,16 @@ const Tablar = (konu) => {
 }
 
 const tabEkleyici = (secici) => {
+
+  const seciciEkleme = document.querySelector(secici);
+  axios
+  .get("http://localhost:5001/api/konular")
+  .then((response) => {
+    seciciEkleme.appendChild(Tablar(response.data.konular));
+  })
+  .catch((error) => {
+    console.log("Error" + error);
+  })
   // GÖREV 4
   // ---------------------
   // Tek argümanı olarak bir css seçici alan bu işlevi uygulayın.
